@@ -30,17 +30,19 @@ This is the Next.js migration of Suggestiss, enabling dynamic meta tags, SSR, an
 # Install dependencies
 npm install
 
-# Run development server
+# Run development server (port 5000)
 npm run dev
 
 # Build for production
 npm run build
 
-# Start production server
+# Start production server (port 5000)
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:5000](http://localhost:5000)
+
+**Note:** Next.js runs on port **5000** to avoid conflicts with the Vite project (port 3000)
 
 ---
 
