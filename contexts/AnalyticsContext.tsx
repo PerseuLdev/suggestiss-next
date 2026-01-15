@@ -46,8 +46,8 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
 
     const initPostHog = () => {
       // Obter credenciais do ambiente
-      const apiKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY;
-      const apiHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST;
+      const apiKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+      const apiHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
       if (!apiKey) {
         console.error(

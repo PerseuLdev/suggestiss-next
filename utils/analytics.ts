@@ -37,7 +37,7 @@ export const getBrowser = (): string => {
  * Verifica se está em ambiente de desenvolvimento
  */
 export const isDevelopment = (): boolean => {
-  return import.meta.env.DEV || import.meta.env.MODE === 'development';
+  return process.env.NODE_ENV === 'development';
 };
 
 /**
