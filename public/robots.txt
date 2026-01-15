@@ -1,0 +1,19 @@
+# robots.txt for Suggestiss
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.vercel/
+
+# Sitemaps
+Sitemap: https://suggestiss.com/sitemap.xml
+
+# Google crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
