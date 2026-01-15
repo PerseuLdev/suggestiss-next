@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Suggestiss Next.js
 
-## Getting Started
+**Smart Gift Suggestions - Next.js Version**
 
-First, run the development server:
+This is the Next.js migration of Suggestiss, enabling dynamic meta tags, SSR, and better SEO.
+
+---
+
+## 📊 Migration Status
+
+**Progress:** 🟢 **75% Complete** (3/8 milestones)
+
+✅ Milestone 1: Preparação e Backup
+✅ Milestone 2: Setup Next.js
+✅ Milestone 3: Migração de Código
+🔄 Milestone 4: Meta Tags Dinâmicas (Next)
+⬜ Milestone 5: PWA/TWA Setup
+⬜ Milestone 6: Testes Locais
+⬜ Milestone 7: Deploy Vercel
+⬜ Milestone 8: Monitoramento
+
+📝 **Full migration plan:** See `Plans/NEXTJS_MIGRATION.md`
+📋 **Audit document:** See `Plans/MIGRATION_AUDIT.md`
+
+---
+
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Tech Stack
 
-## Learn More
+- **Framework:** Next.js 15 (App Router)
+- **UI:** React 19 + Tailwind CSS
+- **Fonts:** Inter + Tenor Sans (Google Fonts)
+- **Analytics:** PostHog + Vercel Analytics
+- **Database:** Upstash Redis
+- **AI:** Google Gemini
+- **PWA:** next-pwa
+- **State:** React Context API
+- **Animations:** Framer Motion
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+suggestiss-next/
+├── app/
+│   ├── layout.tsx      # Root layout with meta tags
+│   ├── page.tsx        # Main page (client component)
+│   └── globals.css     # Global styles
+├── components/         # React components
+├── hooks/             # Custom React hooks
+├── services/          # API services (Gemini, Redis)
+├── contexts/          # React contexts
+├── utils/             # Utility functions
+├── types/             # TypeScript types
+├── locales/           # i18n translations
+├── config/            # App configuration
+├── public/            # Static assets
+└── Plans/             # Migration documentation
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔑 Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Create `.env.local`:
+
+```env
+# API Keys (server-side)
+GEMINI_API_KEY=
+OPENROUTER_API_KEY=
+UPSTASH_REDIS_REST_TOKEN=
+UPSTASH_REDIS_REST_URL=
+
+# Client-side (NEXT_PUBLIC_*)
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_POSTHOG_KEY=
+NEXT_PUBLIC_POSTHOG_HOST=
+```
+
+---
+
+## 🌍 Repositories
+
+- **Vite (current production):** https://github.com/PerseuLdev/Suggestiss
+- **Next.js (this repo):** https://github.com/PerseuLdev/suggestiss-next
+
+---
+
+## 🎯 Key Features Implemented
+
+✅ **App Router** with proper layout structure
+✅ **Dynamic meta tags** ready for locale detection
+✅ **PWA configuration** with next-pwa
+✅ **PostHog analytics** integrated
+✅ **All components** migrated from Vite
+✅ **Environment variables** converted to Next.js format
+✅ **Tailwind CSS** properly configured
+✅ **Image optimization** for Amazon domains
+
+---
+
+## 🔄 Next Steps
+
+1. **Milestone 4:** Implement dynamic meta tags by locale (.com vs .com.br)
+2. **Milestone 5:** Configure PWA/TWA with proper manifest
+3. **Milestone 6:** Test locally and fix any issues
+4. **Milestone 7:** Deploy to Vercel and configure domains
+5. **Milestone 8:** Monitor and optimize performance
+
+---
+
+## 📚 Documentation
+
+- [Migration Plan](Plans/NEXTJS_MIGRATION.md) - Full migration roadmap
+- [Audit Document](Plans/MIGRATION_AUDIT.md) - Current state analysis
+- [Next.js Docs](https://nextjs.org/docs)
+- [Vercel Deployment](https://vercel.com/docs)
+
+---
+
+## 🤝 Contributing
+
+This is a migration-in-progress. The main branch may have incomplete features.
+
+**Original project:** Built with Vite + React
+**Migration goal:** Better SEO, SSR, and subdomain support
+
+---
+
+**Last Updated:** 2025-01-15
+**Migration Progress:** 75% (3/8 milestones)
