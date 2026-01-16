@@ -164,6 +164,66 @@ npx tsc --noEmit
 - Formato: `tipo: descrição curta` (ex: `fix:`, `feat:`, `docs:`, `config:`)
 - Mantenha mensagens concisas e profissionais
 
+### Git Flow - Workflow de Branches:
+
+**IMPORTANTE:** Sempre trabalhe na branch `develop` antes de fazer merge para `main`.
+
+#### Estrutura de branches:
+- **`main`** - Branch de produção (código estável e deployado)
+- **`develop`** - Branch de desenvolvimento (features completas, aguardando release)
+- **`feature/*`** - Branches de features individuais (ex: `feature/add-dark-mode`)
+- **`fix/*`** - Branches de correções (ex: `fix/tailwind-config`)
+
+#### Workflow padrão:
+
+1. **Criar/atualizar branch develop:**
+```bash
+# Se develop não existir, criar a partir da main
+git checkout -b develop
+
+# Se develop já existir, atualizar
+git checkout develop
+git pull origin develop
+```
+
+2. **Criar feature branch:**
+```bash
+# Criar branch a partir da develop
+git checkout -b feature/nome-da-feature
+
+# Trabalhar na feature, fazer commits
+git add .
+git commit -m "feat: descrição da feature"
+```
+
+3. **Merge para develop:**
+```bash
+# Voltar para develop
+git checkout develop
+
+# Fazer merge da feature
+git merge feature/nome-da-feature
+
+# Push para develop
+git push origin develop
+```
+
+4. **Merge para main (apenas quando estável):**
+```bash
+# Apenas quando develop estiver estável e testada
+git checkout main
+git merge develop
+git push origin main
+```
+
+#### Regras importantes:
+
+- ✅ **SEMPRE** trabalhe em `develop` ou em feature branches
+- ✅ **SEMPRE** teste na `develop` antes de fazer merge para `main`
+- ✅ Faça merge para `main` apenas quando o código estiver 100% funcional
+- ❌ **NUNCA** faça commit diretamente na `main` (exceto hotfixes críticos)
+- ❌ **NUNCA** faça push force em branches compartilhadas
+
 ---
 
 ## Estrutura do Projeto
