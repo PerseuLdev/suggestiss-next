@@ -32,9 +32,9 @@
 ## 📊 Progresso Geral
 
 ```
-[██████░░░░░░] 50% - Migração Técnica Completa | Configurações Externas Pendentes
+[██████░░░░░░] 50% - Migração Técnica Completa | i18n e Deploy Pendentes
 
-Fases Completas: 5/10
+Fases Completas: 5/11
 ```
 
 **Milestones Completas:**
@@ -43,6 +43,9 @@ Fases Completas: 5/10
 - ✅ Milestone 3: Migração de Código
 - ✅ Milestone 4: Meta Tags Dinâmicas
 - ✅ Milestone 5: PWA/TWA Setup
+
+**Próxima Milestone:**
+- 🔄 Milestone 6: Migração para Next.js i18n (em andamento)
 
 ---
 
@@ -218,13 +221,70 @@ Fases Completas: 5/10
 
 ---
 
-### Milestone 6: Testes Locais
+### Milestone 6: Migração Next.js i18n
+**Status:** 🔄 Em andamento
+**Tempo:** 2-3h
+**Prioridade:** 🔴 Crítico
+
+**Contexto:** O projeto terá múltiplos idiomas no futuro em .com (EN, ES, FR, DE, etc.), então migrar para o sistema nativo de i18n do Next.js AGORA evita refatoração complexa depois e garante SEO correto desde o início.
+
+**Estratégia:**
+- `.com.br` → PT-BR fixo (sem prefixo na URL)
+- `.com` → Múltiplos idiomas com prefixo (`/en`, `/es`, `/fr`, etc.)
+- URLs com locale: `/en/`, `/es/`, `/pt-BR/`
+- Hreflang automático para SEO
+- Detecção automática de idioma do browser
+
+#### Tarefas
+- [ ] 6.1 Atualizar next.config.ts
+  - [ ] Adicionar configuração i18n
+  - [ ] Configurar locales: ['pt-BR', 'en', 'es', 'fr', 'de']
+  - [ ] Configurar domains (suggestiss.com.br e suggestiss.com)
+  - [ ] Definir defaultLocale por domínio
+  - [ ] Habilitar localeDetection
+- [ ] 6.2 Refatorar estrutura de traduções
+  - [ ] Manter locales/pt-BR.json
+  - [ ] Renomear locales/en-US.json → locales/en.json
+  - [ ] Criar locales/es.json (placeholder para Espanhol)
+  - [ ] Criar locales/fr.json (placeholder para Francês)
+  - [ ] Atualizar tipos em locales/types.ts
+- [ ] 6.3 Atualizar LanguageContext
+  - [ ] Adaptar para usar router.locale do Next.js
+  - [ ] Manter fallback para locales não configurados
+  - [ ] Remover domainDetector (substituído por i18n do Next.js)
+  - [ ] Atualizar changeLanguage para usar router.push com locale
+- [ ] 6.4 Atualizar middleware.ts
+  - [ ] Simplificar (Next.js i18n cuida do roteamento)
+  - [ ] Manter apenas detecção de niche (subdomain)
+  - [ ] Remover lógica de detecção de locale manual
+- [ ] 6.5 Atualizar app/layout.tsx
+  - [ ] Receber locale como prop do Next.js
+  - [ ] Ajustar generateMetadata para usar locale
+  - [ ] Garantir hreflang tags corretos
+- [ ] 6.6 Testar localmente
+  - [ ] /en → Inglês
+  - [ ] /pt-BR → Português
+  - [ ] Trocar idioma funciona
+  - [ ] Redirecionamento automático funciona
+  - [ ] Build sem erros
+
+#### Critérios de Conclusão
+- ✓ Next.js i18n configurado e funcionando
+- ✓ URLs com locale funcionando (/en, /pt-BR)
+- ✓ Troca de idioma funcionando
+- ✓ Build local passando sem erros
+- ✓ SEO: hreflang tags presentes
+- ✓ Preparado para adicionar novos idiomas facilmente
+
+---
+
+### Milestone 7: Testes Locais
 **Status:** ⬜ Não iniciado
 **Tempo:** 2h
 **Prioridade:** 🔴 Crítico
 
 #### Tarefas
-- [ ] 6.1 Testes funcionais
+- [ ] 7.1 Testes funcionais
   - [ ] Homepage carrega
   - [ ] Header funciona
   - [ ] Footer funciona
@@ -232,16 +292,16 @@ Fases Completas: 5/10
   - [ ] API calls funcionam
   - [ ] Imagens carregam
   - [ ] Navegação funciona
-- [ ] 6.2 Testes de responsividade
+- [ ] 7.2 Testes de responsividade
   - [ ] Mobile (375px)
   - [ ] Tablet (768px)
   - [ ] Desktop (1440px)
-- [ ] 6.3 Testes de meta tags
+- [ ] 7.3 Testes de meta tags
   - [ ] Simular .com (EN)
   - [ ] Simular .com.br (PT-BR)
   - [ ] Validar com Facebook Debugger
   - [ ] Validar com Twitter Card Validator
-- [ ] 6.4 Performance (Lighthouse)
+- [ ] 7.4 Performance (Lighthouse)
   - [ ] Performance > 90
   - [ ] SEO > 95
   - [ ] Accessibility > 90
@@ -255,45 +315,45 @@ Fases Completas: 5/10
 
 ---
 
-### Milestone 7: Configuração de Serviços Externos
+### Milestone 8: Configuração de Serviços Externos
 **Status:** ⬜ Não iniciado
 **Tempo:** 1-2h
 **Prioridade:** 🔴 Crítico
 **Documentação:** Ver `Plans/MIGRATION_LOOSE_ENDS.md` para detalhes
 
 #### Tarefas
-- [ ] 7.1 Verificar Supabase
+- [ ] 8.1 Verificar Supabase
   - [ ] Acessar Supabase Dashboard
   - [ ] Verificar Edge Function `api-proxy` deployada
   - [ ] Testar função manualmente
   - [ ] Verificar logs da função
-- [ ] 7.2 Criar Novo Projeto Vercel
+- [ ] 8.2 Criar Novo Projeto Vercel
   - [ ] Importar repo `suggestiss-next`
   - [ ] Configurar Framework Preset (Next.js)
   - [ ] Copiar TODAS variáveis de ambiente (.env.local)
   - [ ] Fazer primeiro deploy Preview
   - [ ] Verificar build passando
-- [ ] 7.3 Configurar PostHog
+- [ ] 8.3 Configurar PostHog
   - [ ] Adicionar 'use client' no AnalyticsProvider (se necessário)
   - [ ] Criar hook usePageTracking para App Router
   - [ ] Testar tracking em Preview
   - [ ] Verificar eventos no PostHog Dashboard
-- [ ] 7.4 Verificar Upstash Redis
+- [ ] 8.4 Verificar Upstash Redis
   - [ ] Acessar Upstash Dashboard
   - [ ] Verificar limites do plano
   - [ ] Testar rate limiting em Preview
-- [ ] 7.5 Verificar Gemini API
+- [ ] 8.5 Verificar Gemini API
   - [ ] Acessar Google AI Studio
   - [ ] Verificar quotas disponíveis
   - [ ] Testar chamadas em Preview
-- [ ] 7.6 Configurar Vercel Analytics
+- [ ] 8.6 Configurar Vercel Analytics
   - [ ] Adicionar <Analytics /> no layout (se não estiver)
   - [ ] Adicionar <SpeedInsights /> no layout (se não estiver)
   - [ ] Verificar métricas após deploy
-- [ ] 7.7 Criar sitemap.xml
+- [ ] 8.7 Criar sitemap.xml
   - [ ] Criar app/sitemap.ts
   - [ ] Testar em Preview
-- [ ] 7.8 Criar robots.txt
+- [ ] 8.8 Criar robots.txt
   - [ ] Criar app/robots.ts
   - [ ] Testar em Preview
 
@@ -306,18 +366,18 @@ Fases Completas: 5/10
 
 ---
 
-### Milestone 8: Deploy Preview e Testes
+### Milestone 9: Deploy Preview e Testes
 **Status:** ⬜ Não iniciado
 **Tempo:** 2-3h
 **Prioridade:** 🔴 Crítico
 
 #### Tarefas
-- [ ] 8.1 Configurar DNS Temporário
+- [ ] 9.1 Configurar DNS Temporário
   - [ ] Configurar CNAME next.suggestiss.com
   - [ ] Apontar para Vercel
   - [ ] Aguardar propagação DNS (2-4h)
   - [ ] Testar acesso via next.suggestiss.com
-- [ ] 8.2 Testes em Preview (next.suggestiss.com)
+- [ ] 9.2 Testes em Preview (next.suggestiss.com)
   - [ ] Testar todas as funcionalidades
   - [ ] Testar .com (EN) via headers/middleware
   - [ ] Testar .com.br (PT-BR) via headers/middleware
@@ -325,12 +385,12 @@ Fases Completas: 5/10
   - [ ] Verificar PostHog Analytics
   - [ ] Verificar Vercel Analytics
   - [ ] Testar PWA (instalação mobile)
-- [ ] 8.3 Performance em Preview
+- [ ] 9.3 Performance em Preview
   - [ ] Lighthouse Performance > 90
   - [ ] Lighthouse SEO > 95
   - [ ] Lighthouse Accessibility > 90
   - [ ] Verificar Web Vitals no Vercel
-- [ ] 8.4 Correções (se necessário)
+- [ ] 9.4 Correções (se necessário)
   - [ ] Corrigir bugs encontrados
   - [ ] Re-deploy Preview
   - [ ] Re-testar
@@ -343,36 +403,36 @@ Fases Completas: 5/10
 
 ---
 
-### Milestone 9: Deploy Produção
+### Milestone 10: Deploy Produção
 **Status:** ⬜ Não iniciado
 **Tempo:** 2-3h (+ propagação DNS)
 **Prioridade:** 🔴 Crítico
 
 #### Tarefas
-- [ ] 9.1 Preparação DNS
+- [ ] 10.1 Preparação DNS
   - [ ] Reduzir TTL para 300s (24h antes)
   - [ ] Anotar IPs/CNAMEs atuais (rollback)
   - [ ] Backup configurações DNS
-- [ ] 9.2 Configurar Domínios Principais no Vercel
+- [ ] 10.2 Configurar Domínios Principais no Vercel
   - [ ] Adicionar suggestiss.com
   - [ ] Adicionar suggestiss.com.br
   - [ ] Adicionar www.suggestiss.com (redirect)
   - [ ] Adicionar www.suggestiss.com.br (redirect)
   - [ ] Anotar novos CNAMEs fornecidos pelo Vercel
-- [ ] 9.3 Atualizar DNS
+- [ ] 10.3 Atualizar DNS
   - [ ] Atualizar CNAME/A suggestiss.com
   - [ ] Atualizar CNAME/A suggestiss.com.br
   - [ ] Atualizar www redirects
   - [ ] Aguardar propagação (2-48h)
-- [ ] 9.4 Merge para develop
+- [ ] 10.4 Merge para develop
   - [ ] Commit final com todas as mudanças
   - [ ] Merge branch feature → develop
   - [ ] Push develop
-- [ ] 9.5 Deploy Produção Vercel
+- [ ] 10.5 Deploy Produção Vercel
   - [ ] Verificar build automático
   - [ ] Aguardar deploy completar
   - [ ] Verificar certificados SSL ativos
-- [ ] 9.6 Smoke Tests Produção
+- [ ] 10.6 Smoke Tests Produção
   - [ ] Acessar suggestiss.com
   - [ ] Acessar suggestiss.com.br
   - [ ] Verificar meta tags PT/EN
@@ -389,7 +449,7 @@ Fases Completas: 5/10
 
 ---
 
-### Milestone 10: Monitoramento Pós-Deploy
+### Milestone 11: Monitoramento Pós-Deploy
 **Status:** ⬜ Não iniciado
 **Tempo:** Contínuo (primeiras 48h)
 **Prioridade:** 🟡 Alto

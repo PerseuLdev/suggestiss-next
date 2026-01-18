@@ -18,6 +18,7 @@ import {
 interface FilterBarProps {
   filters: FilterState;
   setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  isSticky: boolean;
   niches: NicheOption[];
   currentNiche: string;
   onNicheChange: (id: string) => void;
@@ -30,7 +31,7 @@ interface SpecialFilter {
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
-  filters, setFilters, niches, currentNiche, onNicheChange
+  filters, setFilters, isSticky, niches, currentNiche, onNicheChange
 }) => {
   const { t } = useLanguage();
   const { trackCategoryClick, trackFilterApplied, trackSortChange, trackSpecialFilterToggle } = useAnalytics();
