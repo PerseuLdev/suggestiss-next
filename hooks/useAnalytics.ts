@@ -111,7 +111,7 @@ export const useAnalytics = () => {
 
     try {
       // Define propriedades do usuário no PostHog
-      window.posthog.setPersonProperties(sanitizeEventProperties(properties));
+      window.posthog.setPersonProperties(sanitizeEventProperties(properties as unknown as Record<string, unknown>));
 
       if (isDevelopment()) {
         console.log('[Analytics] User properties set:', properties);
@@ -134,7 +134,10 @@ export const useAnalytics = () => {
     }
 
     try {
-      window.posthog.reset();
+      // PostHog reset method - may not be available in all versions
+      if ('reset' in window.posthog && typeof window.posthog.reset === 'function') {
+        (window.posthog as { reset: () => void }).reset();
+      }
 
       if (isDevelopment()) {
         console.log('[Analytics] User reset successfully');
@@ -169,7 +172,7 @@ export const useAnalytics = () => {
     }
 
     try {
-      return window.posthog.__loaded;
+      return window.posthog.__loaded || false;
     } catch {
       return false;
     }

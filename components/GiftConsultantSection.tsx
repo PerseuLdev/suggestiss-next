@@ -119,9 +119,10 @@ export const GiftConsultantSection: React.FC = () => {
     } catch (error: unknown) {
       console.error('[GiftConsultant] Error in fetchSuggestions:', error);
       if (error && typeof error === 'object' && 'isRateLimited' in error && error.isRateLimited) {
+        const rateLimitError = error as { isRateLimited: boolean; message: string; resetIn: number };
         setRateLimitError({
-          message: (error as { message: string }).message,
-          resetIn: (error as { resetIn: number }).resetIn
+          message: rateLimitError.message,
+          resetIn: rateLimitError.resetIn
         });
       }
       setLoading(false);
