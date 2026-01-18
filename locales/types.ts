@@ -46,6 +46,7 @@ export interface Translations {
     rateLimitTitle: string;
     rateLimitMessage: string;
     rateLimitRetry: string;
+    retryIn: string;
     cachedResultsTitle: string;
     cachedResultsMessage: string;
     newSearchAvailable: string;

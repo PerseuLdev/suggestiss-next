@@ -1,10 +1,20 @@
 import type { NextConfig } from "next";
+// @ts-expect-error - next-pwa doesn't have TypeScript definitions
 import withPWA from 'next-pwa';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['m.media-amazon.com', 'images-na.ssl-images-amazon.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images-na.ssl-images-amazon.com',
+      },
+    ],
   },
   env: {
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,

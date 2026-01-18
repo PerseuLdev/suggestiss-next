@@ -19,7 +19,7 @@ interface RegionOption {
 }
 
 export const LanguageSelector: React.FC = () => {
-  const { locale, deliveryCountry, amazonConfig, changeLanguage, changeDeliveryCountry } = useLanguage();
+  const { locale, deliveryCountry, changeLanguage, changeDeliveryCountry } = useLanguage();
   const { changeRegion } = useRegion();
   const { trackLanguageChange, trackEvent } = useAnalytics();
   const [isOpen, setIsOpen] = useState(false);

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Tenor_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { headers } from "next/headers";
+import { getMetadata } from "@/locales/meta-tags";
+import type { Locale } from "@/locales/types";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,54 +19,47 @@ const tenorSans = Tenor_Sans({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Suggestiss - Smart Gift Suggestions | AI-Powered Gift Ideas",
-  description: "Discover trending gifts and viral products for all occasions. AI-powered recommendations to find the perfect gift every time.",
-  keywords: "gift ideas, gift suggestions, present ideas, trending gifts, viral products, ai gift finder, smart gifts, gift recommendations, birthday gifts, christmas gifts, suggestiss",
-  authors: [{ name: "Suggestiss" }],
-  robots: "index, follow",
-  openGraph: {
-    type: "website",
-    url: "https://suggestiss.com",
-    title: "Suggestiss - Smart Gift Suggestions",
-    description: "Discover trending gifts and products. AI-powered gift recommendations for all occasions.",
-    images: [
-      {
-        url: "https://suggestiss.com/images/logo/png/og-suggestiss.png",
-        width: 1200,
-        height: 630,
-        alt: "Suggestiss - Smart Gift Suggestions",
-      },
-    ],
-    locale: "en_US",
-    siteName: "Suggestiss",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Suggestiss - Smart Gift Ideas",
-    description: "Discover trending gifts and viral products. Perfect for all occasions.",
-    images: ["https://suggestiss.com/images/logo/png/og-suggestiss.png"],
-  },
-  icons: {
-    icon: "/images/logo/svg/logo-icon.svg",
-    apple: "/images/logo/svg/logo-icon.svg",
-  },
-  other: {
-    "google-site-verification": "zN-CojicTmkYKxNUnGvj5PVc7jtCxmJBi-y5jQGj4PA",
-    "build-version": "20251230-refresh-button",
-  },
-};
+// Dynamic metadata based on locale from middleware
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const locale = (headersList.get("x-locale") || "en-US") as Locale;
 
-export default function RootLayout({
+  return getMetadata(locale);
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const locale = (headersList.get("x-locale") || "en-US") as Locale;
+
+  // Map locale to HTML lang attribute
+  const htmlLang = locale === "pt-BR" ? "pt-BR" : "en";
+
   return (
-    <html lang="en" className={`${inter.variable} ${tenorSans.variable}`}>
+    <html lang={htmlLang} className={`${inter.variable} ${tenorSans.variable}`}>
       <head>
         <meta name="theme-color" content="#18181b" />
-        <link rel="canonical" href="https://suggestiss.com" />
+
+        {/* PWA Meta Tags */}
+        <meta name="application-name" content="Suggestiss" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Suggestiss" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#18181b" />
+        <meta name="msapplication-tap-highlight" content="no" />
+
+        {/* PWA Icons */}
+        <link rel="apple-touch-icon" sizes="192x192" href="/icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+
+        {/* Manifest */}
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="font-sans antialiased">
         {children}

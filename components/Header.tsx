@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { LanguageSelector } from './LanguageSelector';
 import { useLanguage } from '../hooks/useLanguage';
-import { Sparkles } from 'lucide-react';
 
 interface HeaderProps {
   onScrollToConsultant: () => void;
@@ -35,11 +34,13 @@ export const Header: React.FC<HeaderProps> = ({ onScrollToConsultant, onScrollTo
           className="cursor-pointer group"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <img
+          <Image
             src="/images/logo/svg/logo-full-nobg.svg"
             alt="Suggestiss"
+            width={240}
+            height={126}
             className="h-12 w-auto max-w-[240px] transform transition-transform duration-200 group-hover:scale-105"
-            style={{ aspectRatio: '900/472' }}
+            priority
           />
         </div>
 

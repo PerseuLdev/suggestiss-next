@@ -64,19 +64,15 @@ export interface RegionProviderProps {
 }
 
 export const RegionProvider: React.FC<RegionProviderProps> = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [region, setRegion] = useState<RegionConfig>(() => detectRegion());
-  const [cache, setCache] = useState<CacheService>(() => createCacheService(region.code));
+  const initialRegion = detectRegion();
+  const [isLoading] = useState(false); // No async initialization needed
+  const [region, setRegion] = useState<RegionConfig>(initialRegion);
+  const [cache, setCache] = useState<CacheService>(() => createCacheService(initialRegion.code));
 
-  // Initialize region on mount
+  // Log initialization
   useEffect(() => {
-    const detectedRegion = detectRegion();
-    setRegion(detectedRegion);
-    setCache(createCacheService(detectedRegion.code));
-    setIsLoading(false);
-
-    console.log('[RegionContext] Initialized with region:', detectedRegion.code);
-  }, []);
+    console.log('[RegionContext] Initialized with region:', region.code);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * Change current region

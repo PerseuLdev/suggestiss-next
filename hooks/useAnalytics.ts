@@ -170,7 +170,7 @@ export const useAnalytics = () => {
 
     try {
       return window.posthog.__loaded;
-    } catch (error) {
+    } catch {
       return false;
     }
   }, []);

@@ -15,7 +15,6 @@
 
 import {
   RegionConfig,
-  getRegionConfig,
   getRegionByLocale,
   REGIONS,
   isRegionActive,

@@ -6,12 +6,11 @@ import { generateGiftSuggestions } from '../services/geminiService';
 import { ProductGridSkeleton } from './LoadingSkeleton';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAnalytics } from '../hooks/useAnalytics';
-import { 
-  Sparkles, 
-  Search, 
-  ChevronDown, 
-  Tag as TagIcon, 
-  CreditCard, 
+import {
+  Search,
+  ChevronDown,
+  Tag as TagIcon,
+  CreditCard,
   ArrowRight,
   AlertCircle,
   Plus
@@ -61,7 +60,7 @@ export const GiftConsultantSection: React.FC = () => {
   }, [rateLimitError]);
 
   const handleTagClick = (tagKey: string) => {
-    const tagLabel = (t.giftConsultant.tags as any)[tagKey] || tagKey;
+    const tagLabel = t.giftConsultant.tags[tagKey as keyof typeof t.giftConsultant.tags] || tagKey;
     if (interests.includes(tagLabel)) return;
     setInterests(prev => prev ? `${prev}, ${tagLabel}` : tagLabel);
   };
@@ -87,11 +86,11 @@ export const GiftConsultantSection: React.FC = () => {
 
     try {
       const currentPage = isLoadMore ? Math.floor(results.length / 4) + 1 : 1;
-      const budgetLabel = (t.giftConsultant.budgetOptions as any)[budgetKey] || budgetKey;
+      const budgetLabel = t.giftConsultant.budgetOptions[budgetKey as keyof typeof t.giftConsultant.budgetOptions] || budgetKey;
 
       if (!isLoadMore) {
         const searchStartTime = Date.now();
-        const products = await generateGiftSuggestions(age || "Adulto", interests, budgetLabel, currentPage, locale, amazonConfig, []);
+        const products = await generateGiftSuggestions(age || "Adulto", locale, amazonConfig, interests, budgetLabel, currentPage, []);
         const searchDuration = Date.now() - searchStartTime;
 
         trackGiftSearch({
@@ -107,22 +106,22 @@ export const GiftConsultantSection: React.FC = () => {
         const currentNames = results.map(p => p.name);
         const products = await generateGiftSuggestions(
           age || "Adulto",
+          locale,
+          amazonConfig,
           interests,
           budgetLabel,
           currentPage,
-          locale,
-          amazonConfig,
           currentNames
         );
         setResults(prev => [...prev, ...products]);
         setLoadingMore(false);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('[GiftConsultant] Error in fetchSuggestions:', error);
-      if (error.isRateLimited) {
+      if (error && typeof error === 'object' && 'isRateLimited' in error && error.isRateLimited) {
         setRateLimitError({
-          message: error.message,
-          resetIn: error.resetIn
+          message: (error as { message: string }).message,
+          resetIn: (error as { resetIn: number }).resetIn
         });
       }
       setLoading(false);
@@ -210,7 +209,7 @@ export const GiftConsultantSection: React.FC = () => {
                         onClick={() => handleTagClick(tagKey)}
                         className="px-3 py-2 rounded-lg border border-zinc-200 text-xs font-medium text-zinc-600 hover:border-zinc-900 hover:text-zinc-900 hover:bg-zinc-50 transition-all duration-200 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                       >
-                        + {(t.giftConsultant.tags as any)[tagKey]}
+                        + {t.giftConsultant.tags[tagKey as keyof typeof t.giftConsultant.tags]}
                       </button>
                     ))}
                   </div>
@@ -220,23 +219,24 @@ export const GiftConsultantSection: React.FC = () => {
 
             {/* Price Selection */}
             <div className="pt-6 border-t border-zinc-100">
-                <label className="flex items-center gap-2 text-xs font-semibold text-zinc-900 uppercase tracking-wide mb-4">
+                <label htmlFor="budget-select" className="flex items-center gap-2 text-xs font-semibold text-zinc-900 uppercase tracking-wide mb-3">
                   <CreditCard className="w-3.5 h-3.5" />
                   {t.giftConsultant.budgetLabel}
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                <div className="relative">
+                  <select
+                    id="budget-select"
+                    value={budgetKey}
+                    onChange={(e) => setBudgetKey(e.target.value)}
+                    className="w-full px-4 py-3 bg-zinc-50 border border-zinc-200 rounded-xl text-zinc-900 text-sm font-medium focus:bg-white focus:border-zinc-300 focus:shadow-[0_1px_2px_rgba(0,0,0,0.04)] outline-none transition-all duration-200 appearance-none cursor-pointer"
+                  >
                     {BUDGET_OPTIONS.map(opt => (
-                        <button
-                          key={opt}
-                          onClick={() => setBudgetKey(opt)}
-                          className={`px-4 py-3 rounded-xl text-xs font-semibold transition-all duration-200 border
-                            ${budgetKey === opt
-                              ? 'bg-zinc-900 text-white border-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.12),0_4px_8px_rgba(0,0,0,0.08)]'
-                              : 'bg-white text-zinc-600 border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 shadow-[0_1px_2px_rgba(0,0,0,0.04)]'}`}
-                        >
-                          {(t.giftConsultant.budgetOptions as any)[opt] || opt}
-                        </button>
+                      <option key={opt} value={opt}>
+                        {t.giftConsultant.budgetOptions[opt as keyof typeof t.giftConsultant.budgetOptions] || opt}
+                      </option>
                     ))}
+                  </select>
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
                 </div>
             </div>
 

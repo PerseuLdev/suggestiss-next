@@ -10,10 +10,19 @@ import {
   isDevelopment,
 } from '../utils/analytics';
 
+// PostHog interface types
+interface PostHogInstance {
+  init: (apiKey: string, config: Record<string, unknown>) => void;
+  capture: (eventName: string, properties?: Record<string, unknown>) => void;
+  setPersonProperties: (properties: Record<string, unknown>) => void;
+  get_distinct_id: () => string;
+  __loaded?: boolean;
+}
+
 // Declare global posthog from script tag
 declare global {
   interface Window {
-    posthog: any;
+    posthog: PostHogInstance;
   }
 }
 
@@ -88,7 +97,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
           persistence: 'localStorage+cookie', // Melhor persistência
 
           // Debug (apenas em dev)
-          loaded: (ph: any) => {
+          loaded: (ph: PostHogInstance) => {
             if (isDevelopment()) {
               console.log('[Analytics] PostHog initialized successfully');
               console.log('[Analytics] Distinct ID:', ph.get_distinct_id());
@@ -136,7 +145,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
         }
       }, 100);
     }
-  }, []); // Rodar apenas uma vez no mount
+  }, [locale, region]); // Include locale and region as dependencies
 
   // Atualizar propriedades do usuário quando locale/region mudarem
   useEffect(() => {

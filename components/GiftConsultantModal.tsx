@@ -35,7 +35,7 @@ export const GiftConsultantModal: React.FC<GiftConsultantModalProps> = ({ isOpen
     setLoading(true);
     setHasSearched(true);
     // Always fetch page 1 for the modal quick search
-    const products = await generateGiftSuggestions(description, undefined, undefined, 1, locale, amazonConfig);
+    const products = await generateGiftSuggestions(description, locale, amazonConfig, undefined, undefined, 1);
 
     // Track search results
     trackEvent('gift_search_completed', {

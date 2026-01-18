@@ -1,18 +1,16 @@
-import React, { useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { FilterState, NicheOption } from '../types';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAnalytics } from '../hooks/useAnalytics';
-import { 
-  Sparkles,
-  SlidersHorizontal, 
-  Flame, 
-  Star, 
-  Zap, 
-  DollarSign, 
-  Leaf, 
+import {
+  SlidersHorizontal,
+  Flame,
+  Star,
+  Zap,
+  DollarSign,
+  Leaf,
   Crown,
-  TrendingDown,
   ArrowUpDown,
   ChevronDown
 } from 'lucide-react';
@@ -20,7 +18,6 @@ import {
 interface FilterBarProps {
   filters: FilterState;
   setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
-  isSticky: boolean;
   niches: NicheOption[];
   currentNiche: string;
   onNicheChange: (id: string) => void;
@@ -33,11 +30,10 @@ interface SpecialFilter {
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
-  filters, setFilters, isSticky, niches, currentNiche, onNicheChange
+  filters, setFilters, niches, currentNiche, onNicheChange
 }) => {
   const { t } = useLanguage();
   const { trackCategoryClick, trackFilterApplied, trackSortChange, trackSpecialFilterToggle } = useAnalytics();
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleNicheChange = (nicheId: string) => {
     const currentNicheLabel = niches.find(n => n.id === currentNiche)?.label || currentNiche;
@@ -94,16 +90,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     }
   };
 
-  const handleViralityChange = (minViralityScore: number) => {
-    const totalFilters = (filters.specialFilters?.length || 0) + (filters.minPrice > 0 || filters.maxPrice < 999999 ? 1 : 0) + (minViralityScore > 0 ? 1 : 0);
-    trackFilterApplied({ filter_type: 'rating', filter_value: minViralityScore, category: currentNiche, total_filters_active: totalFilters });
-    setFilters(prev => ({ ...prev, minViralityScore }));
-  };
-
   const handleSortChange = (sort: string) => {
     const totalFilters = (filters.specialFilters?.length || 0) + (filters.minPrice > 0 || filters.maxPrice < 999999 ? 1 : 0) + (filters.minViralityScore > 0 ? 1 : 0);
     trackSortChange({ filter_type: 'sort', filter_value: sort, category: currentNiche, total_filters_active: totalFilters });
-    setFilters(prev => ({ ...prev, sort: sort as any }));
+    setFilters(prev => ({ ...prev, sort }));
   };
 
   return (

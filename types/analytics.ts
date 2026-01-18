@@ -106,5 +106,5 @@ export type AnalyticsEventName = typeof ANALYTICS_EVENTS[keyof typeof ANALYTICS_
  * Propriedades genéricas de evento
  */
 export interface EventProperties {
-  [key: string]: any;
+  [key: string]: string | number | boolean | string[] | undefined;
 }

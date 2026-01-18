@@ -15,6 +15,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { RegionProvider } from '@/contexts/RegionContext';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 import { useRegionCache } from '@/hooks/useRegionCache';
 import { AnalyticsProvider } from '@/contexts/AnalyticsContext';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -62,8 +63,8 @@ const AppContent: React.FC = () => {
   // Construct niches with translations
   const niches: NicheOption[] = NICHE_IDS.map(id => ({
     id,
-    label: (t.categories as any)[id] || id,
-    description: (t.categories as any)[`${id}Desc`] || '',
+    label: (t.categories as Record<string, string>)[id] || id,
+    description: (t.categories as Record<string, string>)[`${id}Desc`] || '',
     icon: ICONS[id]
   }));
 
@@ -104,9 +105,8 @@ const AppContent: React.FC = () => {
 
   // Track page views
   useEffect(() => {
-    trackPageView({
+    trackPageView(`${activeNicheLabel || currentNiche} - Suggestiss`, {
       page_path: window.location.pathname,
-      page_title: `${activeNicheLabel || currentNiche} - Suggestiss`,
       referrer: document.referrer || undefined,
     });
   }, [currentNiche, activeNicheLabel, trackPageView]);
@@ -194,14 +194,10 @@ const AppContent: React.FC = () => {
     fetchData();
 
     return () => { mounted = false; };
-  }, [currentNiche, filters.minPrice, filters.maxPrice, filters.minViralityScore, filters.sort, filters.specialFilters, region.code, locale, amazonConfig]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentNiche, filters.minPrice, filters.maxPrice, filters.minViralityScore, filters.sort, filters.specialFilters, region.code, locale]);
 
-  // Invalidate cache when region changes
-  useEffect(() => {
-    console.log(`[App] 🌍 Region changed to: ${region.code}`);
-    setProducts([]);
-    setLoading(true);
-  }, [region.code]);
+  // Reset products when region changes - integrated into main fetch effect via region.code dependency
 
   // Countdown for rate limit
   useEffect(() => {
@@ -409,9 +405,11 @@ const AppContent: React.FC = () => {
 // App wrapper with Providers
 const App: React.FC = () => {
   return (
-    <RegionProvider>
-      <AppWithAnalytics />
-    </RegionProvider>
+    <LanguageProvider>
+      <RegionProvider>
+        <AppWithAnalytics />
+      </RegionProvider>
+    </LanguageProvider>
   );
 };
 
@@ -421,7 +419,7 @@ const AppWithAnalytics: React.FC = () => {
   const { region } = useRegionCache();
 
   return (
-    <AnalyticsProvider locale={locale} region={region}>
+    <AnalyticsProvider locale={locale} region={region.code}>
       <AppContent />
       <Analytics />
       <SpeedInsights />

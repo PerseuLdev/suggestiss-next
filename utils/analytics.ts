@@ -43,8 +43,8 @@ export const isDevelopment = (): boolean => {
 /**
  * Sanitiza propriedades do evento (remove valores undefined/null)
  */
-export const sanitizeEventProperties = (properties: Record<string, any>): Record<string, any> => {
-  const sanitized: Record<string, any> = {};
+export const sanitizeEventProperties = (properties: Record<string, unknown>): Record<string, unknown> => {
+  const sanitized: Record<string, unknown> = {};
 
   Object.keys(properties).forEach((key) => {
     const value = properties[key];

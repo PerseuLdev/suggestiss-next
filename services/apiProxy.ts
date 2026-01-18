@@ -13,7 +13,7 @@ export interface RateLimitError extends Error {
   message: string;
 }
 
-export const callProxy = async (action: 'curated' | 'gift', payload: any) => {
+export const callProxy = async (action: 'curated' | 'gift', payload: Record<string, unknown>) => {
   if (!SUPABASE_URL) {
     console.warn('[API Proxy] Supabase URL not configured. Ensure VITE_SUPABASE_URL is set.');
     // Fallback to local development if needed, or throw error
@@ -61,6 +61,6 @@ export const callProxy = async (action: 'curated' | 'gift', payload: any) => {
 /**
  * Check if error is a rate limit error
  */
-export const isRateLimitError = (error: any): error is RateLimitError => {
-  return error && error.isRateLimited === true;
+export const isRateLimitError = (error: unknown): error is RateLimitError => {
+  return typeof error === 'object' && error !== null && 'isRateLimited' in error && (error as RateLimitError).isRateLimited === true;
 };

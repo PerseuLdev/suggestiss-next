@@ -32,15 +32,17 @@
 ## 📊 Progresso Geral
 
 ```
-[████████░░] 75% - Migração Core Completa
+[██████░░░░░░] 50% - Migração Técnica Completa | Configurações Externas Pendentes
 
-Fases Completas: 3/8
+Fases Completas: 5/10
 ```
 
 **Milestones Completas:**
 - ✅ Milestone 1: Preparação e Backup
 - ✅ Milestone 2: Setup Next.js
 - ✅ Milestone 3: Migração de Código
+- ✅ Milestone 4: Meta Tags Dinâmicas
+- ✅ Milestone 5: PWA/TWA Setup
 
 ---
 
@@ -162,24 +164,24 @@ Fases Completas: 3/8
 ---
 
 ### Milestone 4: Meta Tags Dinâmicas
-**Status:** ⬜ Não iniciado
-**Tempo:** 1-2h
+**Status:** ✅ Completo
+**Tempo:** 2h (Completado em 2026-01-16)
 **Prioridade:** 🟡 Alto
 
 #### Tarefas
-- [ ] 4.1 Criar `middleware.ts`
-  - [ ] Detectar `.com` vs `.com.br`
-  - [ ] Detectar subdomínio (beauty, tech, etc.)
-  - [ ] Adicionar headers `x-locale` e `x-niche`
-- [ ] 4.2 Atualizar `app/layout.tsx`
-  - [ ] Implementar `generateMetadata()` dinâmico
-  - [ ] Meta tags PT-BR para .com.br
-  - [ ] Meta tags EN para .com
-  - [ ] Suporte a diferentes nichos
-- [ ] 4.3 Criar arquivo de traduções para meta tags
-  - [ ] `/locales/meta-tags.ts`
-  - [ ] Títulos e descrições em PT-BR
-  - [ ] Títulos e descrições em EN
+- [x] 4.1 Criar `middleware.ts`
+  - [x] Detectar `.com` vs `.com.br`
+  - [x] Detectar subdomínio (beauty, tech, etc.)
+  - [x] Adicionar headers `x-locale` e `x-niche`
+- [x] 4.2 Atualizar `app/layout.tsx`
+  - [x] Implementar `generateMetadata()` dinâmico
+  - [x] Meta tags PT-BR para .com.br
+  - [x] Meta tags EN para .com
+  - [x] Suporte a diferentes nichos
+- [x] 4.3 Criar arquivo de traduções para meta tags
+  - [x] `/locales/meta-tags.ts`
+  - [x] Títulos e descrições em PT-BR
+  - [x] Títulos e descrições em EN
 
 #### Critérios de Conclusão
 - ✓ Meta tags mudam baseado no domínio
@@ -190,23 +192,23 @@ Fases Completas: 3/8
 ---
 
 ### Milestone 5: PWA/TWA Setup
-**Status:** ⬜ Não iniciado
-**Tempo:** 1h
+**Status:** ✅ Completo
+**Tempo:** 1h (Completado em 2026-01-16)
 **Prioridade:** 🟢 Médio
 
 #### Tarefas
-- [ ] 5.1 Configurar `next-pwa`
-  - [ ] Atualizar `next.config.js`
-  - [ ] Desabilitar em desenvolvimento
-- [ ] 5.2 Criar `public/manifest.json`
-  - [ ] Configurar name, short_name
-  - [ ] Adicionar ícones (192x192, 512x512)
-  - [ ] Configurar theme colors
-  - [ ] Configurar display mode
-- [ ] 5.3 Adicionar meta tags PWA no layout
-  - [ ] apple-mobile-web-app-capable
-  - [ ] apple-mobile-web-app-status-bar-style
-  - [ ] Links para manifest
+- [x] 5.1 Configurar `next-pwa`
+  - [x] Atualizar `next.config.js`
+  - [x] Desabilitar em desenvolvimento
+- [x] 5.2 Criar `public/manifest.json`
+  - [x] Configurar name, short_name
+  - [x] Adicionar ícones (192x192, 512x512)
+  - [x] Configurar theme colors
+  - [x] Configurar display mode
+- [x] 5.3 Adicionar meta tags PWA no layout
+  - [x] apple-mobile-web-app-capable
+  - [x] apple-mobile-web-app-status-bar-style
+  - [x] Links para manifest
 
 #### Critérios de Conclusão
 - ✓ PWA instalável no mobile
@@ -253,63 +255,168 @@ Fases Completas: 3/8
 
 ---
 
-### Milestone 7: Deploy e Validação
+### Milestone 7: Configuração de Serviços Externos
 **Status:** ⬜ Não iniciado
 **Tempo:** 1-2h
 **Prioridade:** 🔴 Crítico
+**Documentação:** Ver `Plans/MIGRATION_LOOSE_ENDS.md` para detalhes
 
 #### Tarefas
-- [ ] 7.1 Deploy Preview
-  - [ ] Push branch para GitHub
-  - [ ] Verificar preview URL do Vercel
-  - [ ] Configurar variáveis de ambiente no Vercel
-- [ ] 7.2 Configurar domínios
-  - [ ] Adicionar suggestiss.com
-  - [ ] Adicionar suggestiss.com.br
-  - [ ] Configurar redirects www
-- [ ] 7.3 Testes em Preview
-  - [ ] Testar .com (EN)
-  - [ ] Testar .com.br (PT-BR)
-  - [ ] Testar compartilhamento WhatsApp
-  - [ ] Verificar Analytics
-- [ ] 7.4 Merge para develop
-  - [ ] Code review (se houver equipe)
-  - [ ] Merge branch
-  - [ ] Testar staging
-- [ ] 7.5 Deploy produção
-  - [ ] Merge develop → master
-  - [ ] Verificar deploy produção
-  - [ ] Smoke tests
+- [ ] 7.1 Verificar Supabase
+  - [ ] Acessar Supabase Dashboard
+  - [ ] Verificar Edge Function `api-proxy` deployada
+  - [ ] Testar função manualmente
+  - [ ] Verificar logs da função
+- [ ] 7.2 Criar Novo Projeto Vercel
+  - [ ] Importar repo `suggestiss-next`
+  - [ ] Configurar Framework Preset (Next.js)
+  - [ ] Copiar TODAS variáveis de ambiente (.env.local)
+  - [ ] Fazer primeiro deploy Preview
+  - [ ] Verificar build passando
+- [ ] 7.3 Configurar PostHog
+  - [ ] Adicionar 'use client' no AnalyticsProvider (se necessário)
+  - [ ] Criar hook usePageTracking para App Router
+  - [ ] Testar tracking em Preview
+  - [ ] Verificar eventos no PostHog Dashboard
+- [ ] 7.4 Verificar Upstash Redis
+  - [ ] Acessar Upstash Dashboard
+  - [ ] Verificar limites do plano
+  - [ ] Testar rate limiting em Preview
+- [ ] 7.5 Verificar Gemini API
+  - [ ] Acessar Google AI Studio
+  - [ ] Verificar quotas disponíveis
+  - [ ] Testar chamadas em Preview
+- [ ] 7.6 Configurar Vercel Analytics
+  - [ ] Adicionar <Analytics /> no layout (se não estiver)
+  - [ ] Adicionar <SpeedInsights /> no layout (se não estiver)
+  - [ ] Verificar métricas após deploy
+- [ ] 7.7 Criar sitemap.xml
+  - [ ] Criar app/sitemap.ts
+  - [ ] Testar em Preview
+- [ ] 7.8 Criar robots.txt
+  - [ ] Criar app/robots.ts
+  - [ ] Testar em Preview
 
 #### Critérios de Conclusão
-- ✓ Preview funcionando
-- ✓ Domínios configurados
-- ✓ Produção no ar
-- ✓ Meta tags funcionando no WhatsApp
+- ✓ Projeto Vercel criado e funcionando
+- ✓ Todas as variáveis de ambiente configuradas
+- ✓ Supabase Edge Function testada
+- ✓ PostHog tracking funcionando
+- ✓ Todas as APIs respondendo corretamente
 
 ---
 
-### Milestone 8: Monitoramento Pós-Deploy
+### Milestone 8: Deploy Preview e Testes
+**Status:** ⬜ Não iniciado
+**Tempo:** 2-3h
+**Prioridade:** 🔴 Crítico
+
+#### Tarefas
+- [ ] 8.1 Configurar DNS Temporário
+  - [ ] Configurar CNAME next.suggestiss.com
+  - [ ] Apontar para Vercel
+  - [ ] Aguardar propagação DNS (2-4h)
+  - [ ] Testar acesso via next.suggestiss.com
+- [ ] 8.2 Testes em Preview (next.suggestiss.com)
+  - [ ] Testar todas as funcionalidades
+  - [ ] Testar .com (EN) via headers/middleware
+  - [ ] Testar .com.br (PT-BR) via headers/middleware
+  - [ ] Testar compartilhamento WhatsApp
+  - [ ] Verificar PostHog Analytics
+  - [ ] Verificar Vercel Analytics
+  - [ ] Testar PWA (instalação mobile)
+- [ ] 8.3 Performance em Preview
+  - [ ] Lighthouse Performance > 90
+  - [ ] Lighthouse SEO > 95
+  - [ ] Lighthouse Accessibility > 90
+  - [ ] Verificar Web Vitals no Vercel
+- [ ] 8.4 Correções (se necessário)
+  - [ ] Corrigir bugs encontrados
+  - [ ] Re-deploy Preview
+  - [ ] Re-testar
+
+#### Critérios de Conclusão
+- ✓ Preview 100% funcional
+- ✓ Todos os testes passando
+- ✓ Performance aceitável
+- ✓ Zero erros críticos
+
+---
+
+### Milestone 9: Deploy Produção
+**Status:** ⬜ Não iniciado
+**Tempo:** 2-3h (+ propagação DNS)
+**Prioridade:** 🔴 Crítico
+
+#### Tarefas
+- [ ] 9.1 Preparação DNS
+  - [ ] Reduzir TTL para 300s (24h antes)
+  - [ ] Anotar IPs/CNAMEs atuais (rollback)
+  - [ ] Backup configurações DNS
+- [ ] 9.2 Configurar Domínios Principais no Vercel
+  - [ ] Adicionar suggestiss.com
+  - [ ] Adicionar suggestiss.com.br
+  - [ ] Adicionar www.suggestiss.com (redirect)
+  - [ ] Adicionar www.suggestiss.com.br (redirect)
+  - [ ] Anotar novos CNAMEs fornecidos pelo Vercel
+- [ ] 9.3 Atualizar DNS
+  - [ ] Atualizar CNAME/A suggestiss.com
+  - [ ] Atualizar CNAME/A suggestiss.com.br
+  - [ ] Atualizar www redirects
+  - [ ] Aguardar propagação (2-48h)
+- [ ] 9.4 Merge para develop
+  - [ ] Commit final com todas as mudanças
+  - [ ] Merge branch feature → develop
+  - [ ] Push develop
+- [ ] 9.5 Deploy Produção Vercel
+  - [ ] Verificar build automático
+  - [ ] Aguardar deploy completar
+  - [ ] Verificar certificados SSL ativos
+- [ ] 9.6 Smoke Tests Produção
+  - [ ] Acessar suggestiss.com
+  - [ ] Acessar suggestiss.com.br
+  - [ ] Verificar meta tags PT/EN
+  - [ ] Testar funcionalidades principais
+  - [ ] Verificar Analytics tracking
+  - [ ] Testar compartilhamento social
+
+#### Critérios de Conclusão
+- ✓ Domínios principais apontando para Next.js
+- ✓ SSL ativo em todos os domínios
+- ✓ Site 100% funcional
+- ✓ Analytics funcionando
+- ✓ Zero erros críticos
+
+---
+
+### Milestone 10: Monitoramento Pós-Deploy
 **Status:** ⬜ Não iniciado
 **Tempo:** Contínuo (primeiras 48h)
 **Prioridade:** 🟡 Alto
 
 #### Tarefas
-- [ ] 8.1 Monitorar métricas Vercel
+- [ ] 10.1 Monitorar métricas Vercel
   - [ ] Page views
   - [ ] Performance (Web Vitals)
   - [ ] Error rate
-- [ ] 8.2 Verificar Analytics
-  - [ ] Google Analytics funcionando
-  - [ ] PostHog tracking
-  - [ ] Conversões mantidas
-- [ ] 8.3 Monitorar erros
-  - [ ] Verificar console do Vercel
+  - [ ] Bandwidth usage
+- [ ] 10.2 Verificar Analytics
+  - [ ] PostHog tracking funcionando
+  - [ ] Vercel Analytics mostrando dados
+  - [ ] Eventos sendo capturados
+- [ ] 10.3 Monitorar erros
+  - [ ] Verificar Logs do Vercel
+  - [ ] Verificar Console do navegador
   - [ ] Configurar Sentry (opcional)
-- [ ] 8.4 Validação final
+- [ ] 10.4 Validação final
   - [ ] SEO mantido (Google Search Console)
-  - [ ] Links compartilhados funcionando
+  - [ ] Links compartilhados funcionando (WhatsApp, Facebook, Twitter)
   - [ ] PWA instalável
+  - [ ] Performance estável
+- [ ] 10.5 Documentação
+  - [ ] Atualizar README.md
+  - [ ] Documentar processo de deploy
+  - [ ] Criar changelog
 
 #### Critérios de Conclusão
 - ✓ Zero erros críticos em 48h
@@ -368,29 +475,62 @@ git push origin hotfix/restore-vite
 
 ## 📚 Referências
 
+### Documentação do Projeto
+- **[MIGRATION_LOOSE_ENDS.md](./MIGRATION_LOOSE_ENDS.md)** - ⚠️ **LEIA ANTES DE FAZER DEPLOY!** Detalhes sobre configurações externas (Supabase, Vercel, PostHog, DNS, etc.)
+
+### Documentação Externa
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Next.js Migration Guide](https://nextjs.org/docs/app/building-your-application/upgrading/from-vite)
 - [next-pwa](https://github.com/shadowwalker/next-pwa)
 - [Vercel Deployment](https://vercel.com/docs)
 - [PWA Manifest](https://web.dev/add-manifest/)
 
+### Serviços Utilizados
+- [Vercel Dashboard](https://vercel.com/dashboard)
+- [Supabase Dashboard](https://supabase.com/dashboard)
+- [PostHog Dashboard](https://app.posthog.com)
+- [Upstash Redis](https://console.upstash.com)
+- [Google AI Studio](https://makersuite.google.com/app/apikey)
+
 ---
 
 ## ✅ Checklist Rápido Pré-Deploy
 
-Antes de fazer merge para master, verificar:
+⚠️ **IMPORTANTE:** Consultar [MIGRATION_LOOSE_ENDS.md](./MIGRATION_LOOSE_ENDS.md) para detalhes completos
 
+### Código e Funcionalidades
 - [ ] Todas as funcionalidades do Vite funcionando
 - [ ] Meta tags dinâmicas testadas (.com e .com.br)
-- [ ] Lighthouse scores > 90
+- [ ] Lighthouse scores > 90 (Performance, SEO, Accessibility)
 - [ ] Zero erros no console
-- [ ] Analytics configurado
 - [ ] PWA instalável
-- [ ] Variáveis de ambiente configuradas no Vercel
-- [ ] Domínios configurados
+- [ ] Imagens Amazon carregando
+
+### Serviços Externos
+- [ ] **Supabase:** Edge Function `api-proxy` deployada e testada
+- [ ] **Vercel:** Projeto novo criado apontando para `suggestiss-next`
+- [ ] **Vercel:** Variáveis de ambiente configuradas (Production + Preview)
+- [ ] **PostHog:** Tracking funcionando (pageviews + eventos)
+- [ ] **Vercel Analytics:** Componentes adicionados no layout
+- [ ] **Upstash Redis:** Rate limiting testado
+- [ ] **Gemini API:** Quotas verificadas
+
+### Deploy e DNS
+- [ ] DNS temporário configurado (next.suggestiss.com)
+- [ ] Preview testado completamente
+- [ ] Certificados SSL ativos
+- [ ] Domínios principais configurados (aguardando apontar)
 - [ ] Backup/rollback plan testado
+
+### SEO e Metadata
+- [ ] sitemap.xml criado
+- [ ] robots.txt criado
+- [ ] Meta tags Open Graph testadas
+- [ ] Compartilhamento social funcionando (WhatsApp, Facebook, Twitter)
 
 ---
 
-**Última atualização:** 2025-01-14
-**Próxima revisão:** Após cada milestone
+**Última atualização:** 2026-01-17
+**Próxima revisão:** Antes de Milestone 7 (Configuração Serviços Externos)
+
+**NOTA:** Para detalhes completos sobre configuração de serviços externos (Supabase, Vercel, PostHog, DNS, etc.), consulte **[MIGRATION_LOOSE_ENDS.md](./MIGRATION_LOOSE_ENDS.md)**

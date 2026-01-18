@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useEffect, useMemo, ReactNode } from 'react';
 import { Locale, Country, Translations, LanguageConfig, AmazonConfig } from '../locales/types';
 import ptBR from '../locales/pt-BR.json';
 import enUS from '../locales/en-US.json';
@@ -33,9 +33,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   const [locale, setLocale] = useState<Locale>(initialLocale);
   const [deliveryCountry, setDeliveryCountry] = useState<Country>(initialCountry);
-  const [t, setT] = useState<Translations>(initialLocale === 'en-US' ? enUS as Translations : ptBR as Translations);
   const [languageConfig, setLanguageConfig] = useState<LanguageConfig>(getLanguageConfig(initialLocale));
   const [amazonConfig, setAmazonConfig] = useState<AmazonConfig>(getAmazonConfig(initialCountry));
+
+  // Derive translations from locale using useMemo
+  const t = useMemo<Translations>(() => {
+    return locale === 'pt-BR' ? (ptBR as Translations) : (enUS as Translations);
+  }, [locale]);
 
   useEffect(() => {
     const initializeLanguage = async () => {
@@ -97,28 +101,14 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       setDeliveryCountry(currentCountry);
       setLanguageConfig(getLanguageConfig(currentLocale));
       setAmazonConfig(getAmazonConfig(currentCountry));
-
-      // Load translations based on locale
-      if (currentLocale === 'pt-BR') {
-        setT(ptBR as Translations);
-      } else if (currentLocale === 'en-US') {
-        setT(enUS as Translations);
-      }
     };
 
     initializeLanguage();
   }, []);
 
   useEffect(() => {
-    // Update HTML lang attribute
+    // Update HTML lang attribute when locale changes
     document.documentElement.lang = locale;
-
-    // Load translations based on locale
-    if (locale === 'pt-BR') {
-      setT(ptBR as Translations);
-    } else if (locale === 'en-US') {
-      setT(enUS as Translations);
-    }
   }, [locale]);
 
   const changeLanguage = (newLocale: Locale) => {

@@ -1,9 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
 import { useLanguage } from '../hooks/useLanguage';
 import { Instagram, Mail } from 'lucide-react';
 
 export const Footer = () => {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <footer className="bg-zinc-950 py-16 mt-0 border-t border-zinc-900">
@@ -15,9 +16,11 @@ export const Footer = () => {
               className="cursor-pointer group w-fit"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <img
+              <Image
                 src="/images/logo/svg/logo-icon.svg"
                 alt="Suggestiss"
+                width={64}
+                height={64}
                 className="h-16 w-16 transform transition-transform duration-200 group-hover:scale-110"
               />
             </div>
@@ -27,7 +30,7 @@ export const Footer = () => {
             <div className="flex flex-col gap-4 pt-4">
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-medium text-zinc-500 uppercase tracking-wide">
-                  {t.locale === 'pt-BR' ? 'Redes Sociais' : 'Social Media'}
+                  {locale === 'pt-BR' ? 'Redes Sociais' : 'Social Media'}
                 </span>
                 <a
                   href="https://www.instagram.com/suggestiss.app?igsh=Z3h4aTEzdTd6aDl4"
@@ -42,7 +45,7 @@ export const Footer = () => {
 
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-medium text-zinc-500 uppercase tracking-wide">
-                  {t.locale === 'pt-BR' ? 'Contato' : 'Contact'}
+                  {locale === 'pt-BR' ? 'Contato' : 'Contact'}
                 </span>
                 <a
                   href="mailto:contact@suggestiss.com"

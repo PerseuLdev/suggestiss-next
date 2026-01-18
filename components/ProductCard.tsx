@@ -3,10 +3,9 @@ import { motion, useInView } from 'framer-motion';
 import { Product } from '../types';
 import { useLanguage } from '../hooks/useLanguage';
 import { useAnalytics } from '../hooks/useAnalytics';
-import { 
-  Star, 
-  ExternalLink, 
-  Flame, 
+import {
+  Star,
+  Flame,
   Info,
   ChevronRight,
   Sparkles
@@ -37,7 +36,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const { t } = useLanguage();
   const { trackProductImpression, trackProductClick, trackAmazonLinkClick } = useAnalytics();
   const [isExpanded, setIsExpanded] = useState(false);
-  const [hasTrackedImpression, setHasTrackedImpression] = useState(false);
+  const hasTrackedImpressionRef = useRef(false);
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.2 });
 
@@ -47,7 +46,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const name = product.name ?? 'Produto sem nome';
 
   useEffect(() => {
-    if (isInView && !hasTrackedImpression) {
+    if (isInView && !hasTrackedImpressionRef.current) {
+      hasTrackedImpressionRef.current = true;
       trackProductImpression({
         product_id: product.id,
         product_name: name,
@@ -57,9 +57,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         position,
         list_type: listType,
       });
-      setHasTrackedImpression(true);
     }
-  }, [isInView, hasTrackedImpression, product.id, name, price, rating, category, position, listType, trackProductImpression]);
+  }, [isInView, product.id, name, price, rating, category, position, listType, trackProductImpression]);
 
   const WORD_LIMIT = 24;
   const words = aiReasoning.split(' ');
@@ -136,7 +135,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="relative p-4 bg-zinc-50 rounded-xl border border-zinc-100 group-hover:bg-white transition-colors duration-200">
             <Sparkles className="w-3.5 h-3.5 text-zinc-300 absolute -top-1.5 -left-1.5 bg-white rounded-full p-0.5 border border-zinc-100" />
             <p className="text-sm text-zinc-600 leading-relaxed italic">
-                "{displayText}"
+                &quot;{displayText}&quot;
             </p>
             {shouldTruncate && (
               <button

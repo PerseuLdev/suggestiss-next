@@ -60,10 +60,10 @@ export const generateCuratedProducts = async (
     if (!data || !Array.isArray(data)) return [];
 
     // Normalize products with ASIN-aware URL generation
-    return data.map((p: any) => ({
+    return data.map((p: Record<string, unknown>) => ({
       ...p,
       id: crypto.randomUUID(),
-      affiliateUrl: generateAmazonUrl({ name: p.name, asin: p.asin }, amazonConfig),
+      affiliateUrl: generateAmazonUrl({ name: p.name as string, asin: p.asin as string | undefined }, amazonConfig),
       store: 'amazon' as AffiliateStore,
       currency: amazonConfig.currency
     }));
@@ -80,11 +80,11 @@ export const generateCuratedProducts = async (
 
 export const generateGiftSuggestions = async (
   ageOrDescription: string,
+  locale: Locale,
+  amazonConfig: AmazonConfig,
   interests?: string,
   budget?: string,
   page: number = 1,
-  locale: Locale,
-  amazonConfig: AmazonConfig,
   excludeNames: string[] = [], // New parameter for deduplication
   detailedSearch: boolean = false // Enable detailed ASIN extraction
 ): Promise<Product[]> => {
@@ -105,13 +105,14 @@ export const generateGiftSuggestions = async (
       detailedSearch // Enable detailed ASIN extraction (slower but more accurate)
     });
 
-    let products = data;
-    
+    let products: unknown = data;
+
     // Extra layer of defense: Unwrap if API returned wrapped object
     if (products && !Array.isArray(products)) {
-      if ((products as any).products) products = (products as any).products;
-      else if ((products as any).data) products = (products as any).data;
-      else if ((products as any).suggestions) products = (products as any).suggestions;
+      const wrapped = products as Record<string, unknown>;
+      if (wrapped.products) products = wrapped.products;
+      else if (wrapped.data) products = wrapped.data;
+      else if (wrapped.suggestions) products = wrapped.suggestions;
     }
 
     if (!products || !Array.isArray(products)) {
@@ -120,10 +121,10 @@ export const generateGiftSuggestions = async (
     }
 
     // Normalize products with ASIN-aware URL generation
-    return products.map((p: any) => ({
+    return products.map((p: Record<string, unknown>) => ({
       ...p,
       id: crypto.randomUUID(),
-      affiliateUrl: generateAmazonUrl({ name: p.name, asin: p.asin }, amazonConfig),
+      affiliateUrl: generateAmazonUrl({ name: p.name as string, asin: p.asin as string | undefined }, amazonConfig),
       store: 'amazon' as AffiliateStore,
       currency: amazonConfig.currency
     }));
