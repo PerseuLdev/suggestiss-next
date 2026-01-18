@@ -38,5 +38,6 @@ SUPABASE_SETUP.md
 !package-lock.json
 !tsconfig.json
 !vercel.json
+!locales/*.json
 
 .env.local

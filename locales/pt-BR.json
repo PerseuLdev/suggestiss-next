@@ -1,0 +1,169 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "loadMore": "Carregar Mais",
+    "loadingMore": "Buscando novidades...",
+    "refreshSuggestions": "Recarregar Sugestões",
+    "refreshing": "Atualizando...",
+    "refreshLimitReached": "Limite diário atingido",
+    "refreshLimitMessage": "Você atingiu o limite de {limit} atualizações por dia. Tente novamente amanhã!",
+    "refreshSuccess": "Sugestões atualizadas!",
+    "error": "Ocorreu um erro",
+    "noResults": "Sem resultados",
+    "cleanFilters": "Limpar todos os filtros"
+  },
+  "loading": {
+    "messages": [
+      "Analisando tendências virais...",
+      "Buscando produtos mais desejados...",
+      "Verificando avaliações reais...",
+      "Encontrando os melhores preços...",
+      "Selecionando presentes perfeitos...",
+      "Consultando rankings de popularidade..."
+    ]
+  },
+  "nav": {
+    "aiConsultant": "Buscar Presente",
+    "trending": "Explorar Produtos"
+  },
+  "app": {
+    "rateLimitTitle": "Limite de requisições atingido",
+    "rateLimitMessage": "Muitas solicitações. Aguarde um momento.",
+    "rateLimitRetry": "Tentar novamente",
+    "retryIn": "Tentar novamente em",
+    "cachedResultsTitle": "Exibindo resultados em cache",
+    "cachedResultsMessage": "Mostrando últimos resultados carregados.",
+    "newSearchAvailable": "Novas buscas disponíveis em:"
+  },
+  "categories": {
+    "highlights": "Destaques",
+    "niches": "Nichos",
+    "trending": "Em Alta",
+    "trendingDesc": "Produtos populares e tendências",
+    "deals": "Ofertas",
+    "dealsDesc": "Melhores promoções e descontos",
+    "bestsellers": "Mais Vendidos",
+    "bestsellersDesc": "Best-sellers e favoritos do público",
+    "gifts": "Para Presentear",
+    "giftsDesc": "Ideias de presentes especiais",
+    "sustainable": "Sustentáveis",
+    "sustainableDesc": "Produtos eco-friendly e conscientes",
+    "premium": "Premium",
+    "premiumDesc": "Produtos de luxo e alta qualidade",
+    "tech": "Tecnologia",
+    "techDesc": "Gadgets, Periféricos e Desk Setup",
+    "decor": "Casa e Decoração",
+    "decorDesc": "Decoração minimalista e conforto",
+    "fashion": "Moda & Beleza",
+    "fashionDesc": "Estilo essencial e autocuidado",
+    "fitness": "Fitness e Bem-estar",
+    "fitnessDesc": "Equipamentos e Saúde",
+    "pets": "Pets",
+    "petsDesc": "Mimos para seu melhor amigo",
+    "hobbies": "Hobbies & Jogos",
+    "hobbiesDesc": "Jogos, lazer e diversão off-line",
+    "travel": "Viagem",
+    "travelDesc": "Acessórios inteligentes para viajar",
+    "kids": "Infantil e Brinquedos",
+    "kidsDesc": "Brinquedos educativos",
+    "surprise": "Me Surpreenda",
+    "surpriseDesc": "Produtos que você não sabia que precisava (até agora)"
+  },
+  "hero": {
+    "badge": "Tendências do Momento",
+    "title": "Os presentes que todo mundo",
+    "titleHighlight": "realmente quer.",
+    "subtitle": "Pare de adivinhar. Descubra os produtos mais quentes e desejados do momento e acerte em cheio no presente.",
+    "ctaGift": "Encontrar Presente Ideal",
+    "ctaExplore": "Ver Itens em Alta"
+  },
+  "filters": {
+    "label": "Filtros",
+    "specialFilters": "Filtros Especiais",
+    "priceMin": "Preço Mín.",
+    "priceMax": "Faixa de Preço",
+    "priceValue": "R$ {value}+",
+    "priceNoLimit": "Sem limite",
+    "priceUpTo": "Até R$ {value}",
+    "priceAbove": "Acima de R$ {value}",
+    "priceAll": "Todos os preços",
+    "viralityMin": "Ranking Mín.",
+    "viralityAbove": "Acima de {value}",
+    "viralityAll": "Todos os rankings",
+    "sortBy": "Ordenar por",
+    "sortPopularity": "Mais Populares",
+    "sortNewest": "Novidades",
+    "sortPriceAsc": "Menor Preço",
+    "sortPriceDesc": "Maior Preço",
+    "sortRating": "Melhor Avaliação"
+  },
+  "productCard": {
+    "whySuggest": "Por que está em alta",
+    "averagePrice": "Preço Médio",
+    "seeOffer": "Ver Disponibilidade",
+    "tipLabel": "Dica:",
+    "tipText": "Adicione ao carrinho agora. As sugestões mudam diariamente ⏰🔥",
+    "readMore": "Veja mais",
+    "readLess": "Veja menos",
+    "viralityScore": "Score de Viralidade"
+  },
+  "giftConsultant": {
+    "sectionTitle": "Encontre o Presente Perfeito",
+    "sectionSubtitle": "Não sabe o que comprar? Veja o que viralizou.",
+    "description": "Conte o perfil e te mostramos os itens mais cobiçados agora.",
+    "ageLabel": "Idade",
+    "agePlaceholder": "Ex: 25",
+    "budgetLabel": "Orçamento Máximo",
+    "interestsLabel": "Interesses e Vibe",
+    "interestsPlaceholder": "Ex: Café gourmet, gamer cozy...",
+    "directLinkLabel": "Link Direto (BETA)",
+    "directLinkDescription": "Tenta encontrar o link exato do produto (mais lento).",
+    "generateButton": "Ver Melhores Opções",
+    "generating": "Caçando Tendências...",
+    "resultsTitle": "Escolhas Exclusivas",
+    "resultsCount": "{count} ACHADOS",
+    "loadMore": "Ver mais achados",
+    "tags": {
+      "tech": "Tech",
+      "decoration": "Decor",
+      "games": "Games",
+      "books": "Livros",
+      "sports": "Esportes",
+      "cooking": "Culinária",
+      "art": "Arte",
+      "music": "Música",
+      "travel": "Viagem",
+      "minimalism": "Minimalismo",
+      "fitness": "Fitness"
+    },
+    "budgetOptions": {
+      "any": "Qualquer valor",
+      "upTo100": "Até R$ 100",
+      "range100to300": "R$ 100 - R$ 300",
+      "range300to1000": "R$ 300 - R$ 1000",
+      "premium": "Premium (R$ 1000+)"
+    }
+  },
+  "footer": {
+    "description": "Sua fonte diária das melhores ideias de presentes e compras. Rastreamos o que é tendência para você nunca perder o presente perfeito.",
+    "terms": "Termos",
+    "privacy": "Privacidade",
+    "contact": "Contato",
+    "copyright": "© 2025 Suggestiss Inc. All rights reserved.",
+    "disclaimerTitle": "Disclaimer:",
+    "disclaimerText": "O Suggestiss agrega as melhores ofertas e tendências. Não vendemos diretamente. Links podem ser afiliados, mantendo nossa curadoria ativa. Preços e estoque mudam rápido – adicione ao carrinho enquanto houver tempo."
+  },
+  "errors": {
+    "generic": "Algo deu errado. Tente de novo.",
+    "rateLimit": "Tráfego alto agora. Aguarde um segundo."
+  },
+  "seo": {
+    "title": "Suggestiss - Presentes em Alta e Achados Imperdíveis",
+    "description": "Não perca o presente perfeito. Descubra produtos virais e bem avaliados para qualquer ocasião. Garantia de impressionar.",
+    "keywords": "ideias de presente, sugestão de presente, guia de presentes, o que dar de presente, presente para namorado, presente para namorada, presente de aniversário, presente de natal, presente amigo secreto, presentes virais, produtos tendência, presentes bem avaliados, ideias de presente 2024, presentes unicos, tiktok made me buy it, gadgets legais, presentes aesthetic",
+    "ogTitle": "Suggestiss - Descubra os Presentes Mais Desejados",
+    "ogDescription": "Veja a lista dos presentes que estão em alta. Não compre nada antes de ver isso.",
+    "twitterTitle": "Suggestiss - Top Tendências de Presentes",
+    "twitterDescription": "Os produtos mais desejados do momento. Confira a lista."
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "loadMore": "Load More",
+    "loadingMore": "Finding new suggestions...",
+    "refreshSuggestions": "Refresh Suggestions",
+    "refreshing": "Refreshing...",
+    "refreshLimitReached": "Daily limit reached",
+    "refreshLimitMessage": "You've reached the limit of {limit} refreshes per day. Try again tomorrow!",
+    "refreshSuccess": "Suggestions refreshed!",
+    "error": "An error occurred",
+    "noResults": "No results",
+    "cleanFilters": "Clear all filters"
+  },
+  "loading": {
+    "messages": [
+      "Analyzing viral trends...",
+      "Finding most desired products...",
+      "Checking real reviews...",
+      "Searching for best prices...",
+      "Selecting perfect gifts...",
+      "Consulting popularity rankings..."
+    ]
+  },
+  "nav": {
+    "aiConsultant": "Find Gift",
+    "trending": "Explore Products"
+  },
+  "app": {
+    "rateLimitTitle": "Rate limit reached",
+    "rateLimitMessage": "Too many requests. Please wait a moment.",
+    "rateLimitRetry": "Try again",
+    "retryIn": "Retry in",
+    "cachedResultsTitle": "Showing cached results",
+    "cachedResultsMessage": "Displaying last loaded results.",
+    "newSearchAvailable": "New searches available in:"
+  },
+  "categories": {
+    "highlights": "Highlights",
+    "niches": "Categories",
+    "trending": "Trending",
+    "trendingDesc": "Popular products and trends",
+    "deals": "Deals",
+    "dealsDesc": "Best promotions and discounts",
+    "bestsellers": "Best Sellers",
+    "bestsellersDesc": "Top sellers and public favorites",
+    "gifts": "Gift Ideas",
+    "giftsDesc": "Special gift suggestions",
+    "sustainable": "Sustainable",
+    "sustainableDesc": "Eco-friendly and conscious products",
+    "premium": "Premium",
+    "premiumDesc": "Luxury and high-quality products",
+    "tech": "Tech & Setup",
+    "techDesc": "Gadgets, Peripherals and Desk Setup",
+    "decor": "Home & Decor",
+    "decorDesc": "Minimalist decoration and comfort",
+    "fashion": "Fashion & Beauty",
+    "fashionDesc": "Style essentials and self-care",
+    "fitness": "Fitness & Wellness",
+    "fitnessDesc": "Equipment and Health",
+    "pets": "Pets",
+    "petsDesc": "Treats for your furry friend",
+    "hobbies": "Hobbies & Games",
+    "hobbiesDesc": "Games, leisure and offline fun",
+    "travel": "Travel",
+    "travelDesc": "Smart travel gear and accessories",
+    "kids": "Kids & Toys",
+    "kidsDesc": "Educational toys",
+    "surprise": "Surprise Me",
+    "surpriseDesc": "Products you didn't know you needed (until now)"
+  },
+  "hero": {
+    "badge": "Trending Now",
+    "title": "The gifts everyone",
+    "titleHighlight": "actually wants.",
+    "subtitle": "Stop guessing. Discover the hottest, most wish-listed products right now and nail the perfect gift.",
+    "ctaGift": "Find Perfect Gift",
+    "ctaExplore": "See Trending Items"
+  },
+  "filters": {
+    "label": "Filters",
+    "specialFilters": "Special Filters",
+    "priceMin": "Min Price",
+    "priceMax": "Price Range",
+    "priceValue": "$ {value}+",
+    "priceNoLimit": "No limit",
+    "priceUpTo": "Up to $ {value}",
+    "priceAbove": "Above $ {value}",
+    "priceAll": "All prices",
+    "viralityMin": "Min Ranking",
+    "viralityAbove": "Above {value}",
+    "viralityAll": "All rankings",
+    "sortBy": "Sort by",
+    "sortPopularity": "Most Popular 🔥",
+    "sortNewest": "Newest Drops",
+    "sortPriceAsc": "Lowest Price",
+    "sortPriceDesc": "Highest Price",
+    "sortRating": "Top Rated ⭐"
+  },
+  "productCard": {
+    "whySuggest": "Why it's trending",
+    "averagePrice": "Avg Price",
+    "seeOffer": "Check Availability",
+    "tipLabel": "Tip:",
+    "tipText": "Add to cart now. Suggestions refresh daily ⏰🔥",
+    "readMore": "Read more",
+    "readLess": "Read less",
+    "viralityScore": "Virality Score"
+  },
+  "giftConsultant": {
+    "sectionTitle": "Find the Perfect Gift",
+    "sectionSubtitle": "Don't know what to buy? See what's viral.",
+    "description": "Tell us the profile and we'll show you the most coveted items right now.",
+    "ageLabel": "Age",
+    "agePlaceholder": "E.g.: 25",
+    "budgetLabel": "Max Budget",
+    "interestsLabel": "Interests & Vibe",
+    "interestsPlaceholder": "E.g.: Specialty coffee, cozy gamer...",
+    "directLinkLabel": "Direct Link (BETA)",
+    "directLinkDescription": "Attempts to find exact product link (slower).",
+    "generateButton": "Show Best Options",
+    "generating": "Hunting Trends...",
+    "resultsTitle": "Exclusive Picks",
+    "resultsCount": "{count} FINDS",
+    "loadMore": "See more finds",
+    "tags": {
+      "tech": "Tech",
+      "decoration": "Decor",
+      "games": "Games",
+      "books": "Books",
+      "sports": "Sports",
+      "cooking": "Cooking",
+      "art": "Art",
+      "music": "Music",
+      "travel": "Travel",
+      "minimalism": "Minimalism",
+      "fitness": "Fitness"
+    },
+    "budgetOptions": {
+      "any": "Any amount",
+      "upTo100": "Up to $100",
+      "range100to300": "$100 - $300",
+      "range300to1000": "$300 - $1000",
+      "premium": "Premium ($1000+)"
+    }
+  },
+  "footer": {
+    "description": "Your daily source for the best gift ideas and shopping finds. We track what's trending so you never miss out on the perfect gift.",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "copyright": "© 2025 Suggestiss Inc. All rights reserved.",
+    "disclaimerTitle": "Disclaimer:",
+    "disclaimerText": "Suggestiss aggregates the best deals and trends. We don't sell directly. Links may be affiliate links, keeping our curation active. Prices and stock change fast – grab yours while available."
+  },
+  "errors": {
+    "generic": "Something went wrong. Try again.",
+    "rateLimit": "High traffic right now. Please wait a sec."
+  },
+  "seo": {
+    "title": "Suggestiss - Trending Gifts & Must-Have Finds",
+    "description": "Don't miss out on the perfect gift. Discover top-rated and viral products for every occasion. Guaranteed to impress.",
+    "keywords": "viral gifts, trending products, top rated gifts, gift ideas 2026, unique presents, tiktok made me buy it, cool gadgets, aesthetic gifts, gifts for him, gifts for her",
+    "ogTitle": "Suggestiss - Discover the Most Wanted Gifts",
+    "ogDescription": "See the list of gifts that are trending right now. Don't buy anything before checking this.",
+    "twitterTitle": "Suggestiss - Top Trending Gifts",
+    "twitterDescription": "The most wanted products of the moment. Check the list."
+  }
+}
